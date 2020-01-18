@@ -70,9 +70,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void initialize() async {
     await flutterTts.setLanguage('hi-IN');
+    await flutterTts.setSpeechRate(0.85);
   }
 
-  void analyze(String text) {}
+  void analyze(String text) {
+    if (text == 'how are you') {
+      speak('i am good thank you');
+    } else if (text == 'open music') {
+      speak('text');
+    } else {
+      speak("Sorry, I didn't understand that.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

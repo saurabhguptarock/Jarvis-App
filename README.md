@@ -1,6 +1,6 @@
 # jarvis
 
-A new Flutter project.
+An AI powered assistant made by Saurabh.
 
 ## Getting Started
 
