@@ -47,7 +47,10 @@ class _MyHomePageState extends State<MyHomePage> {
       if (app.appName.toLowerCase() == appName) packageName = app.packageName;
     });
     print(appName);
-    DeviceApps.openApp(packageName);
+    if (packageName == '')
+      speak('Sorry cannot open $appName');
+    else
+      DeviceApps.openApp(packageName);
   }
 
   void listen() async {
@@ -99,13 +102,60 @@ class _MyHomePageState extends State<MyHomePage> {
     await flutterTts.setSpeechRate(0.6);
   }
 
+  void speakYourAge() {
+    DateTime now = DateTime.now();
+    DateTime yearsOld = DateTime.utc(2020, 1, 20, 19, 38, 34);
+    if (now.year - yearsOld.year > 0) {
+      speak('i am ${now.year - yearsOld.year} years old');
+    } else if (now.month - yearsOld.month > 0) {
+      speak('i am ${now.month - yearsOld.month} months old');
+    } else if (now.day - yearsOld.day > 0) {
+      speak('i am ${now.day - yearsOld.day} days old');
+    } else if (now.hour - yearsOld.hour > 0) {
+      speak('i am ${now.hour - yearsOld.hour} hours old');
+    } else if (now.minute - yearsOld.minute > 0) {
+      speak('i am ${now.minute - yearsOld.minute} minutes old');
+    } else if (now.second - yearsOld.second > 0) {
+      speak('i am ${now.second - yearsOld.second} seconds old');
+    }
+  }
+
+  void checkWeekDay() {
+    if (DateTime.now().weekday == 0)
+      speak('it is sunday');
+    else if (DateTime.now().weekday == 1)
+      speak('it is monday');
+    else if (DateTime.now().weekday == 2)
+      speak('it is tuesday');
+    else if (DateTime.now().weekday == 3)
+      speak('it is wednesday');
+    else if (DateTime.now().weekday == 4)
+      speak('it is thursday');
+    else if (DateTime.now().weekday == 5)
+      speak('it is friday');
+    else if (DateTime.now().weekday == 6) speak('it is saturday');
+  }
+
   void analyze(String text) {
-    if (text == 'how are you')
+    if (text == 'how are you' || text == 'how you doing')
       speak('i am good thank you');
     else if (text == 'what are you' || text == 'who are you')
       speak('i am an AI powered chatbot made by saurabh');
+    else if (text == 'what made you' || text == 'who made you')
+      speak('i was made by saurabh');
+    else if (text == 'how old are you' ||
+        text == 'what is your age' ||
+        text == "what's your age")
+      speakYourAge();
+    else if (text == 'what laguages can you speak' ||
+        text == 'what laguage can you speak')
+      speak('currently i only speak english');
+    else if (text == 'what day it is' || text == 'what day is it')
+      checkWeekDay();
     else if (text.contains('open '))
       openApps(text);
+    else if (text.contains('open'))
+      speak('open what, please say it again');
     else
       speak("Sorry, I didn't understand that");
   }

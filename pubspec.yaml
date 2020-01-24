@@ -1,7 +1,7 @@
 name: jarvis
 description: An AI powered assistant made by Saurabh.
 
-version: 1.0.0+1
+version: 2.4.7+5
 
 environment:
   sdk: ">=2.2.0 <3.0.0"
@@ -15,7 +15,6 @@ dependencies:
   flutter_tts: ^0.8.6
   flare_flutter: ^2.0.1
   google_fonts: ^0.3.2
-  url_launcher: ^5.4.1
   device_apps: ^1.0.9
 
 dev_dependencies:
